@@ -46,6 +46,10 @@ yolo detect train model=yolo11n.yaml pretrained=False data=coco5k-detect-pod.yam
   epochs="$EPOCHS" imgsz=640 batch=32 seed=0 deterministic=True device=0 workers=8 \
   project=runs name=coco5k-detect-baseline exist_ok=True
 
-tar -czf coco5k-detect-outputs.tgz env_record.txt coco5k-detect-pod.yaml runs/coco5k-detect-baseline
+# Tar the whole runs/ tree: ultralytics 8.4.117 nests the output as
+# runs/detect/runs/<name>/, not runs/<name>/, so a specific path is fragile.
+tar -czf coco5k-detect-outputs.tgz env_record.txt coco5k-detect-pod.yaml runs
+cp coco5k-detect-outputs.tgz /workspace/ 2>/dev/null || true   # easy to reach in Jupyter
 echo
-echo "DONE — download coco5k-detect-outputs.tgz, then TERMINATE the pod."
+echo "DONE — download coco5k-detect-outputs.tgz (also copied to /workspace), then TERMINATE the pod."
+find . -name best.pt

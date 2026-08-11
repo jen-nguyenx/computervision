@@ -31,6 +31,8 @@ if find "$STAGE/coco5k/images" -type l | grep -q .; then
 fi
 
 echo "Creating $OUT ..."
-tar -cf "$OUT" -C "$STAGE" coco5k
+# COPYFILE_DISABLE stops macOS tar from adding AppleDouble ._* sidecar files,
+# which would otherwise land as junk label/image files on the Linux pod.
+COPYFILE_DISABLE=1 tar -cf "$OUT" -C "$STAGE" coco5k
 du -h "$OUT"
 echo "Done. Upload $OUT to the pod, then run scripts/pod_train_detect.sh there."
