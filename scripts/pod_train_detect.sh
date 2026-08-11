@@ -31,7 +31,10 @@ with open("coco5k-detect-pod.yaml", "w") as f:
         f.write(f"  {k}: {names[k]}\n")
 EOF
 
-# cloud-side environment record (§9.1: pin the machine that MADE the checkpoint)
+# cloud-side environment record (§9.1: pin the machine that MADE the checkpoint).
+# YOLO_CONFIG_DIR keeps ultralytics' "config dir not writable" warning out of
+# the record — in a container /root/.config is often read-only.
+export YOLO_CONFIG_DIR=/tmp/Ultralytics
 python3 - <<'EOF' | tee env_record.txt
 import platform, torch, ultralytics
 print("python      ", platform.python_version())

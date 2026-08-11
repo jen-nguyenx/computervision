@@ -34,3 +34,5 @@ ultralytics==8.4.117
 ultralytics-thop==2.1.6
 urllib3==2.7.0
 pytest==9.1.1
+pycocotools==2.0.11
+pandas==3.0.5
