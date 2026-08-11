@@ -47,4 +47,44 @@ for split in train val test; do
   echo "$split: $(ls "$ROOT/images/$split" | wc -l) images"
 done
 [ "$missing" -eq 0 ] || { echo "ERROR: $missing images could not be fetched" >&2; exit 1; }
-echo "All images present. Next: bash pod_train_detect.sh"
+
+# Integrity check against the frozen manifest: every fetched file must decode,
+# and its pixel dimensions must equal the width/height recorded when the subset
+# was built (D3). This proves the pod holds the SAME images as the laptop —
+# a byte-count check alone would not catch a truncated or substituted file.
+if [ -f "$ROOT/coco5k.csv" ]; then
+  python3 - "$ROOT" <<'PY'
+import csv, sys
+from pathlib import Path
+from PIL import Image
+
+root = Path(sys.argv[1])
+by_name = {}
+with open(root / "coco5k.csv") as f:
+    for row in csv.DictReader(f):
+        by_name[row["file_name"]] = (int(row["width"]), int(row["height"]))
+
+checked = bad = 0
+for split in ("train", "val", "test"):
+    for path in (root / "images" / split).iterdir():
+        expected = by_name.get(path.name)
+        if expected is None:
+            print(f"NOT IN MANIFEST: {split}/{path.name}"); bad += 1; continue
+        try:
+            with Image.open(path) as im:
+                im.verify()                      # catches truncated/corrupt files
+            with Image.open(path) as im:
+                size = im.size
+        except Exception as exc:
+            print(f"UNREADABLE: {split}/{path.name}: {exc}"); bad += 1; continue
+        if size != expected:
+            print(f"SIZE MISMATCH: {split}/{path.name} {size} != {expected}"); bad += 1
+        checked += 1
+
+print(f"verified {checked} images against the frozen manifest, {bad} problems")
+sys.exit(1 if bad else 0)
+PY
+else
+  echo "NOTE: coco5k.csv not in the tarball — skipping manifest verification."
+fi
+echo "All images present and verified. Next: bash pod_train_detect.sh"

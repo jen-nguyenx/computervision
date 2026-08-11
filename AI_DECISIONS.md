@@ -137,9 +137,21 @@ since several decisions changed because of it.
 | Prompt | "I need one model first and earlier — renting a GPU online, would that be fine and faster, like 1 hour max?" (my override, from an outside suggestion) |
 | AI recommendation | Original ladder was Kaggle free tier first (free, ~30 GPU-h/week), rented pod as fallback. When I prioritized time-to-first-model, the AI agreed renting is faster (~30–40 min training on an RTX 4090-class GPU, <$1) and reordered: local MPS smoke test first (never ship unverified labels to a paid pod), then pod, with Kaggle demoted to fallback. Local overnight MPS training remains a documented third option (measured decision rule: time one epoch, train locally if ≥20 epochs fit in ~10h). |
 | Risks / my critique | The AI's first plan optimized for cost; my constraint was calendar time. Both are valid — the point is the choice was mine and explicit. Billing gotcha noted: terminate (not stop) the pod. Cloud-side §9.1 env pinning is scripted so the checkpoint's actual machine is recorded. |
-| Verification | 1-epoch MPS smoke run on the generated dataset: 0 corrupt labels, checkpoint saved, val ran — layout proven before any upload. Packaging script refuses to ship symlinks (they would arrive broken). |
-| Final decision | Detect model first, trained from scratch on a rented pod (~40 epochs, imgsz 640, ≈30–40 min GPU); scripts/package_for_pod.sh + scripts/pod_train_detect.sh prepared. |
-| Evidence | scripts/package_for_pod.sh; scripts/pod_train_detect.sh; smoke-run log (0 corrupt, 1 epoch, val OK). |
+| Verification | 1-epoch MPS smoke run on the generated dataset: 0 corrupt labels, checkpoint saved, val ran — layout proven before any upload. On the pod: RTX 4090 confirmed in the env record, 4000 train / 500 val images scanned with 0 corrupt, finite losses from epoch 1, ~20 s/epoch measured (40 epochs ≈ 15 min, well under the ≤6 GPU-h budget). |
+| Final decision | Detect model first, from scratch on a rented RTX 4090 (40 epochs, imgsz 640, batch 32, seed 0). Kaggle demoted to fallback; local MPS overnight kept as the last resort. Recorded in INITIAL_PLAN.md revision 2. |
+| Evidence | scripts/pod_train_detect.sh; env_record.txt (pod Python/torch/CUDA/GPU); train.log; INITIAL_PLAN.md revision 2. |
+
+## Entry 12 — The AI's data-transfer design failed in the target environment ★
+
+| Field | Content |
+|---|---|
+| Stage | Deployment of training data to remote compute |
+| Prompt | "What's happening?" / "so i have to upload again?" — my questions while the pod stalled |
+| AI recommendation | Original: package all 5,000 images + labels into one ~850 MB tar, upload through Jupyter, untar on the pod. It worked in local testing (tar built and inspected on the Mac) — but was never tested end-to-end on a pod. |
+| Risks / my critique | It failed in three ways I hit in sequence: (1) I extracted before the upload finished, and the AI's `2>/dev/null` had silenced tar's errors, so the real cause stayed invisible for several rounds — a debugging anti-pattern the AI itself introduced; (2) macOS silently added AppleDouble `._*` sidecar files that appear as bogus label files on Linux; (3) untarring ~15,000 small files onto the pod's network volume crawled at ~1 MB/min (22 MB after ten minutes). I pushed back on repeated "just wait" answers and asked for an estimate, which forced the pivot. |
+| Verification | Byte-exact upload confirmed (888,730,112 bytes) — proving the upload was NOT the problem and re-uploading would have wasted more time; `df` ruled out disk space (network volume 77% used); `du` showed extraction progress flatlining on both the network volume and local disk. After the pivot: 5,000 images fetched and verified in seconds, Ultralytics scanned them with 0 corrupt. |
+| Final decision | Replaced the design: ship labels + manifests only (7 MB) and let the pod fetch images from the COCO CDN in parallel (`scripts/pod_fetch_images.sh`). Also hardened it beyond the AI's version — the fetch script now decodes every image and checks its dimensions against `manifests/coco5k.csv`, because "file exists and is non-empty" would not catch a truncated or substituted download. Packaging is now a committed script (`scripts/package_labels_for_pod.sh`) that fails if AppleDouble junk survives; previously it was an ad-hoc command that existed nowhere in the repo — an unnoticed §12.1 reproducibility gap. |
+| Evidence | scripts/package_labels_for_pod.sh; scripts/pod_fetch_images.sh (manifest verification block); INITIAL_PLAN.md revision 3; pod session log (byte-count check, df, du flatline, successful fetch). |
 
 ---
 
@@ -150,6 +162,7 @@ since several decisions changed because of it.
 3. **Entry 7** — my own oversampling plan was revised after argument and measurement; representation concerns were redirected into §10.5 slice analysis. *(Changed a plan after evidence contradicted the initial idea.)*
 4. **Entry 9** — rejected the single-plan presentation; required multiple pipeline proposals and explicit per-finding decisions. *(Rejected an AI recommendation on process.)*
 5. **Entry 2** — the AI's rasterization-noise assumption (~10% tolerance needed) measured as <0.05% in practice. *(Found an assumption to be empirically unfounded; tolerance kept as defensive slack.)*
+6. **Entry 12** — the AI's data-transfer design worked locally but failed on the pod (network-volume untar at ~1 MB/min, macOS sidecar files, errors hidden by its own `2>/dev/null`). I refused "just wait", demanded an estimate, and the design was replaced with a 7 MB labels upload plus CDN fetch — then hardened further with manifest verification the AI's version lacked. *(Corrected AI-generated code after it failed in the real target environment.)*
 
 ## Decided vs. still open
 

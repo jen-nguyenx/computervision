@@ -60,7 +60,8 @@ evaluation (box mAP, mask mAP, oriented mAP are different things), and deploymen
 
 | Risk | Fallback |
 |---|---|
-| Training too slow on Mac (MPS) | Time one epoch in the smoke test first. If the projection is more than about 6 hours per model: fewer epochs, smaller image size, or Kaggle T4. |
+| Training too slow on Mac (MPS) | RESOLVED 2026-08-12: rent a GPU pod instead (see revision 2). Ladder if a pod is unavailable: Kaggle free T4, then local MPS overnight at reduced scale. |
+| Moving the dataset to remote compute | RESOLVED 2026-08-12: ship labels only (7 MB) and fetch images from the COCO CDN on the pod (see revision 3). |
 | DOTA patching tool behaves unexpectedly | Pin the exact ultralytics version. Visually verify 12 patches before trusting it. |
 | A converter bug discovered late | Visual validation before training. Automated tests run before every training launch. |
 | TODO: add one or two more from your own worries. Download corruption? Running out of evenings? | |
@@ -74,4 +75,32 @@ Hint: brief section 13 says data correctness outranks everything, so weight it a
 ## 5. Plan Revisions
 
 - 2026-08-11: Initial plan.
-- (Add dated entries here when evidence changes a decision, for example after DOTA exploration.)
+
+- **2026-08-12 — Revision 1: data pipeline is config-driven, policies decided up front.**
+  Evidence: exploration verified my reading of the COCO format against pycocotools (0 mismatches
+  across 35,765 annotations) and quantified the edge cases (3,455 disconnected instances, 635 crude
+  polygons, 448 crowd, 49 empty images, 154 grayscale). Each finding needed a policy, so rather than
+  burying those choices in code I put all eleven in `configs/pipeline_coco.yaml` with the reasoning in
+  `docs/COCO_PIPELINE_DECISIONS.md` (D1–D17). Task 9's "disconnected multi-polygon" TODO in section 2
+  is now decided: **merge with Ultralytics `merge_multi_segment`, flag instances with ≥8 parts, never
+  remove them.** A "keep the largest part" or "drop suspicious" rule would have biased 10% of all
+  objects to kill a handful of bad labels — sparse label noise is cheaper than a systematic distortion.
+
+- **2026-08-12 — Revision 2: baselines train on a rented GPU pod, not locally and not on Kaggle.**
+  Evidence: a 1-epoch MPS smoke run proved the generated dataset layout works (4,000 images, 0 corrupt)
+  but confirmed the Mac would need overnight runs per model. Measured on a rented RTX 4090: ~20 s per
+  epoch, so 40 epochs ≈ 15 minutes at a cost under $1 — the fastest route to a first model, which was
+  my priority. Kaggle's free tier (originally plan A) drops to fallback because account setup and queue
+  time cost more calendar time than the pod costs money. Consequence for reporting: each run record
+  states the hardware that produced *that* checkpoint, and the pod script prints its own
+  Python/torch/CUDA versions into `env_record.txt` (§9.1 applies to the training machine, not my laptop).
+
+- **2026-08-12 — Revision 3: move labels to the pod, fetch images from source.**
+  Evidence: shipping the full ~850 MB tarball failed in practice. The upload succeeded, but extracting
+  ~15,000 small files onto the pod's network volume crawled at roughly 1 MB/min (22 MB after ten
+  minutes), and macOS had silently added AppleDouble `._*` sidecar files that would have looked like
+  extra labels on Linux. Replaced with: upload labels + manifests only (7 MB, seconds) and let the pod
+  pull the 5,000 images straight from the COCO CDN in about a minute (`scripts/pod_fetch_images.sh`).
+  The image set is still decided solely by the frozen manifest — filenames are derived from the label
+  files — and the script now verifies every fetched image decodes and matches the width/height recorded
+  in `manifests/coco5k.csv`, so the pod provably holds the same subset as the laptop.
