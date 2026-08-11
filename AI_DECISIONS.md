@@ -153,6 +153,30 @@ since several decisions changed because of it.
 | Final decision | Replaced the design: ship labels + manifests only (7 MB) and let the pod fetch images from the COCO CDN in parallel (`scripts/pod_fetch_images.sh`). Also hardened it beyond the AI's version — the fetch script now decodes every image and checks its dimensions against `manifests/coco5k.csv`, because "file exists and is non-empty" would not catch a truncated or substituted download. Packaging is now a committed script (`scripts/package_labels_for_pod.sh`) that fails if AppleDouble junk survives; previously it was an ad-hoc command that existed nowhere in the repo — an unnoticed §12.1 reproducibility gap. |
 | Evidence | scripts/package_labels_for_pod.sh; scripts/pod_fetch_images.sh (manifest verification block); INITIAL_PLAN.md revision 3; pod session log (byte-count check, df, du flatline, successful fetch). |
 
+## Entry 13 — Undertrained first baseline: diagnosis and the fix
+
+| Field | Content |
+|---|---|
+| Stage | Result interpretation (§6 workstream 6) and training configuration |
+| Prompt | "Now it is undertrained, look at the result and let's discuss how to make it better." / "maybe more epochs with better optimiser. and increase pxl" |
+| AI recommendation | Diagnosis from `results.csv`: mAP50 was still climbing at epoch 40 (0.018 → 0.022 over the last 10 epochs), losses still falling, and the learning rate had annealed to 4.1e-6 — i.e. a *complete* schedule that was simply too short, not an interrupted run. Also flagged that `optimizer=auto` had selected AdamW at lr0 = 0.000119, ~80× lower than the reference from-scratch recipe (SGD @ 0.01). Recommended 300 epochs + SGD as the baseline, and — against my initial instinct to change all three knobs at once — keeping imgsz as a *separate* controlled experiment. |
+| Risks / my critique | I wanted more epochs + better optimizer + bigger images in one run. The AI pushed back: bundling them would make the result unattributable and waste the §9.5 experiment. I accepted the split, but only after checking the reasoning — epochs and optimizer are the standard from-scratch recipe (baseline configuration, not experimentation), while imgsz is a genuine hypothesis to test. I also asked whether class imbalance was the cause; the evidence said no, and I kept my existing "expose, don't fight" policy. |
+| Verification | The imbalance question was settled with data, not opinion: `person` has 11,281 training instances (31% of the dataset) and still only reached mAP50 0.214. If imbalance were the binding constraint the head class would be strong and the tail weak; instead everything was weak. Conclusion: training budget, not distribution. Optimizer override confirmed in the new run's log (`optimizer: SGD(lr=0.01, momentum=0.937)`), replacing the auto-selected AdamW. |
+| Final decision | Baseline = 300 epochs, SGD lr0 0.01, imgsz 640, seed 0, from scratch. Controlled experiment = the same run at imgsz 960, single variable, **hypothesis pre-registered and committed before either run finished** (`reports/metrics/experiment_imgsz_hypothesis.md`), grounded in my own audit finding that 41% of COCO5K annotations are under 32² px. The 40-epoch run is kept as honest evidence about training duration, described as an observation rather than a pre-registered experiment. Class imbalance stays unaddressed in training by design; copy-paste augmentation (using the segment masks I already produced) is recorded as the recommended next experiment. |
+| Evidence | artifacts/coco5k-detect-40ep/ (results.csv, args.yaml, per-class metrics); reports/metrics/experiment_imgsz_hypothesis.md; train_both.log optimizer line; INITIAL_PLAN.md revisions. |
+
+## Entry 14 — DOTA label format checked against the assignment's warnings
+
+| Field | Content |
+|---|---|
+| Stage | Dataset preparation (DOTA5K) |
+| Prompt | First inspection of the DOTA v1.0 train split after extracting images and labels. |
+| AI recommendation | Earlier in the session the AI listed DOTA parsing traps to expect: metadata header lines before the annotations, exactly 10 tokens per annotation line (8 coordinates + class + difficulty), and the risk of accidentally holding v1.5/v2.0 labels, which add a 16th class (container-crane) and would silently break a 15-class mapping. |
+| Risks / my critique | These were claims about a dataset neither of us had opened yet — worth checking before writing any converter, since a wrong class list or a naive line parser corrupts everything downstream. |
+| Verification | Inspected `labelTxt/P0000.txt` directly: the first two lines are indeed `imagesource:GoogleEarth` and `gsd:0.146343590398`, followed by 10-token annotation lines. Tallied class names across all 1,411 label files: **exactly 15 distinct names** — ship 28,068, small-vehicle 26,126, large-vehicle 16,969, plane 8,055, harbor 5,983, storage-tank 5,029, tennis-court 2,367, bridge 2,047, swimming-pool 1,736, helicopter 630, basketball-court 515, baseball-diamond 415, roundabout 399, soccer-ball-field 326, ground-track-field 325. No `container-crane`, confirming this is genuinely v1.0. |
+| Final decision | Parser will skip non-numeric-leading lines explicitly (never a bare try/except, which would swallow real annotations), assert 10 tokens per line, and assert the observed class set equals the 15 official v1.0 names. Also noted for the audit: DOTA is imbalanced too (ship ≈ 86× ground-track-field), so the same "measure and slice, don't resample" policy carries over. |
+| Evidence | datasets/dota/labelTxt/P0000.txt (header lines visible); class tally over all 1,411 label files (15 names, counts above); 1,411 images / 1,411 label files paired. |
+
 ---
 
 ## Substantive corrections and rejections (assignment requires ≥3)
@@ -162,7 +186,8 @@ since several decisions changed because of it.
 3. **Entry 7** — my own oversampling plan was revised after argument and measurement; representation concerns were redirected into §10.5 slice analysis. *(Changed a plan after evidence contradicted the initial idea.)*
 4. **Entry 9** — rejected the single-plan presentation; required multiple pipeline proposals and explicit per-finding decisions. *(Rejected an AI recommendation on process.)*
 5. **Entry 2** — the AI's rasterization-noise assumption (~10% tolerance needed) measured as <0.05% in practice. *(Found an assumption to be empirically unfounded; tolerance kept as defensive slack.)*
-6. **Entry 12** — the AI's data-transfer design worked locally but failed on the pod (network-volume untar at ~1 MB/min, macOS sidecar files, errors hidden by its own `2>/dev/null`). I refused "just wait", demanded an estimate, and the design was replaced with a 7 MB labels upload plus CDN fetch — then hardened further with manifest verification the AI's version lacked. *(Corrected AI-generated code after it failed in the real target environment.)*
+6. **Entry 13** — I proposed changing epochs, optimizer, and image size in one run; after arguing it through I split them into a properly-configured baseline plus a single-variable experiment, and pre-registered the hypothesis before any result existed. I also questioned whether class imbalance was to blame and accepted the evidence that it was not. *(Changed my own plan after argument and measurement.)*
+7. **Entry 12** — the AI's data-transfer design worked locally but failed on the pod (network-volume untar at ~1 MB/min, macOS sidecar files, errors hidden by its own `2>/dev/null`). I refused "just wait", demanded an estimate, and the design was replaced with a 7 MB labels upload plus CDN fetch — then hardened further with manifest verification the AI's version lacked. *(Corrected AI-generated code after it failed in the real target environment.)*
 
 ## Decided vs. still open
 
