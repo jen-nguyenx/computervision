@@ -1,0 +1,998 @@
+{
+  "classes": {
+    "person": {
+      "instances": {
+        "train": 9067,
+        "val": 1169,
+        "test": 1045
+      },
+      "images": {
+        "train": 2155,
+        "val": 272,
+        "test": 273
+      }
+    },
+    "bicycle": {
+      "instances": {
+        "train": 251,
+        "val": 46,
+        "test": 57
+      },
+      "images": {
+        "train": 120,
+        "val": 14,
+        "test": 16
+      }
+    },
+    "car": {
+      "instances": {
+        "train": 1578,
+        "val": 140,
+        "test": 174
+      },
+      "images": {
+        "train": 441,
+        "val": 45,
+        "test": 47
+      }
+    },
+    "motorcycle": {
+      "instances": {
+        "train": 347,
+        "val": 20,
+        "test": 12
+      },
+      "images": {
+        "train": 149,
+        "val": 12,
+        "test": 11
+      }
+    },
+    "airplane": {
+      "instances": {
+        "train": 180,
+        "val": 22,
+        "test": 24
+      },
+      "images": {
+        "train": 103,
+        "val": 15,
+        "test": 11
+      }
+    },
+    "bus": {
+      "instances": {
+        "train": 233,
+        "val": 27,
+        "test": 6
+      },
+      "images": {
+        "train": 147,
+        "val": 23,
+        "test": 6
+      }
+    },
+    "train": {
+      "instances": {
+        "train": 170,
+        "val": 21,
+        "test": 16
+      },
+      "images": {
+        "train": 132,
+        "val": 15,
+        "test": 11
+      }
+    },
+    "truck": {
+      "instances": {
+        "train": 323,
+        "val": 38,
+        "test": 45
+      },
+      "images": {
+        "train": 205,
+        "val": 27,
+        "test": 26
+      }
+    },
+    "boat": {
+      "instances": {
+        "train": 334,
+        "val": 63,
+        "test": 45
+      },
+      "images": {
+        "train": 97,
+        "val": 10,
+        "test": 13
+      }
+    },
+    "traffic light": {
+      "instances": {
+        "train": 438,
+        "val": 41,
+        "test": 37
+      },
+      "images": {
+        "train": 138,
+        "val": 11,
+        "test": 13
+      }
+    },
+    "fire hydrant": {
+      "instances": {
+        "train": 62,
+        "val": 6,
+        "test": 3
+      },
+      "images": {
+        "train": 54,
+        "val": 6,
+        "test": 3
+      }
+    },
+    "stop sign": {
+      "instances": {
+        "train": 49,
+        "val": 7,
+        "test": 14
+      },
+      "images": {
+        "train": 47,
+        "val": 6,
+        "test": 13
+      }
+    },
+    "parking meter": {
+      "instances": {
+        "train": 37,
+        "val": 2,
+        "test": 5
+      },
+      "images": {
+        "train": 24,
+        "val": 2,
+        "test": 3
+      }
+    },
+    "bench": {
+      "instances": {
+        "train": 310,
+        "val": 32,
+        "test": 51
+      },
+      "images": {
+        "train": 168,
+        "val": 22,
+        "test": 26
+      }
+    },
+    "bird": {
+      "instances": {
+        "train": 359,
+        "val": 46,
+        "test": 19
+      },
+      "images": {
+        "train": 107,
+        "val": 10,
+        "test": 7
+      }
+    },
+    "cat": {
+      "instances": {
+        "train": 160,
+        "val": 22,
+        "test": 22
+      },
+      "images": {
+        "train": 143,
+        "val": 19,
+        "test": 21
+      }
+    },
+    "dog": {
+      "instances": {
+        "train": 191,
+        "val": 30,
+        "test": 48
+      },
+      "images": {
+        "train": 139,
+        "val": 21,
+        "test": 26
+      }
+    },
+    "horse": {
+      "instances": {
+        "train": 260,
+        "val": 27,
+        "test": 29
+      },
+      "images": {
+        "train": 104,
+        "val": 13,
+        "test": 16
+      }
+    },
+    "sheep": {
+      "instances": {
+        "train": 304,
+        "val": 72,
+        "test": 42
+      },
+      "images": {
+        "train": 43,
+        "val": 11,
+        "test": 6
+      }
+    },
+    "cow": {
+      "instances": {
+        "train": 168,
+        "val": 39,
+        "test": 16
+      },
+      "images": {
+        "train": 51,
+        "val": 13,
+        "test": 8
+      }
+    },
+    "elephant": {
+      "instances": {
+        "train": 157,
+        "val": 32,
+        "test": 34
+      },
+      "images": {
+        "train": 68,
+        "val": 7,
+        "test": 9
+      }
+    },
+    "bear": {
+      "instances": {
+        "train": 53,
+        "val": 4,
+        "test": 2
+      },
+      "images": {
+        "train": 38,
+        "val": 2,
+        "test": 2
+      }
+    },
+    "zebra": {
+      "instances": {
+        "train": 195,
+        "val": 21,
+        "test": 50
+      },
+      "images": {
+        "train": 65,
+        "val": 8,
+        "test": 10
+      }
+    },
+    "giraffe": {
+      "instances": {
+        "train": 208,
+        "val": 21,
+        "test": 28
+      },
+      "images": {
+        "train": 93,
+        "val": 12,
+        "test": 10
+      }
+    },
+    "backpack": {
+      "instances": {
+        "train": 299,
+        "val": 49,
+        "test": 35
+      },
+      "images": {
+        "train": 182,
+        "val": 27,
+        "test": 19
+      }
+    },
+    "umbrella": {
+      "instances": {
+        "train": 374,
+        "val": 91,
+        "test": 35
+      },
+      "images": {
+        "train": 127,
+        "val": 23,
+        "test": 12
+      }
+    },
+    "handbag": {
+      "instances": {
+        "train": 438,
+        "val": 83,
+        "test": 50
+      },
+      "images": {
+        "train": 240,
+        "val": 35,
+        "test": 33
+      }
+    },
+    "tie": {
+      "instances": {
+        "train": 233,
+        "val": 24,
+        "test": 20
+      },
+      "images": {
+        "train": 132,
+        "val": 13,
+        "test": 14
+      }
+    },
+    "suitcase": {
+      "instances": {
+        "train": 215,
+        "val": 41,
+        "test": 26
+      },
+      "images": {
+        "train": 73,
+        "val": 10,
+        "test": 13
+      }
+    },
+    "frisbee": {
+      "instances": {
+        "train": 100,
+        "val": 14,
+        "test": 13
+      },
+      "images": {
+        "train": 64,
+        "val": 13,
+        "test": 11
+      }
+    },
+    "skis": {
+      "instances": {
+        "train": 220,
+        "val": 37,
+        "test": 33
+      },
+      "images": {
+        "train": 95,
+        "val": 16,
+        "test": 16
+      }
+    },
+    "snowboard": {
+      "instances": {
+        "train": 78,
+        "val": 10,
+        "test": 3
+      },
+      "images": {
+        "train": 56,
+        "val": 6,
+        "test": 3
+      }
+    },
+    "sports ball": {
+      "instances": {
+        "train": 209,
+        "val": 30,
+        "test": 19
+      },
+      "images": {
+        "train": 140,
+        "val": 20,
+        "test": 12
+      }
+    },
+    "kite": {
+      "instances": {
+        "train": 306,
+        "val": 34,
+        "test": 50
+      },
+      "images": {
+        "train": 74,
+        "val": 9,
+        "test": 12
+      }
+    },
+    "baseball bat": {
+      "instances": {
+        "train": 91,
+        "val": 12,
+        "test": 12
+      },
+      "images": {
+        "train": 80,
+        "val": 12,
+        "test": 10
+      }
+    },
+    "baseball glove": {
+      "instances": {
+        "train": 135,
+        "val": 11,
+        "test": 17
+      },
+      "images": {
+        "train": 83,
+        "val": 11,
+        "test": 13
+      }
+    },
+    "skateboard": {
+      "instances": {
+        "train": 189,
+        "val": 30,
+        "test": 36
+      },
+      "images": {
+        "train": 122,
+        "val": 15,
+        "test": 17
+      }
+    },
+    "surfboard": {
+      "instances": {
+        "train": 216,
+        "val": 14,
+        "test": 31
+      },
+      "images": {
+        "train": 134,
+        "val": 10,
+        "test": 17
+      }
+    },
+    "tennis racket": {
+      "instances": {
+        "train": 180,
+        "val": 21,
+        "test": 19
+      },
+      "images": {
+        "train": 121,
+        "val": 12,
+        "test": 16
+      }
+    },
+    "bottle": {
+      "instances": {
+        "train": 796,
+        "val": 114,
+        "test": 83
+      },
+      "images": {
+        "train": 289,
+        "val": 36,
+        "test": 36
+      }
+    },
+    "wine glass": {
+      "instances": {
+        "train": 210,
+        "val": 67,
+        "test": 28
+      },
+      "images": {
+        "train": 72,
+        "val": 14,
+        "test": 10
+      }
+    },
+    "cup": {
+      "instances": {
+        "train": 657,
+        "val": 79,
+        "test": 96
+      },
+      "images": {
+        "train": 314,
+        "val": 38,
+        "test": 43
+      }
+    },
+    "fork": {
+      "instances": {
+        "train": 190,
+        "val": 18,
+        "test": 34
+      },
+      "images": {
+        "train": 126,
+        "val": 9,
+        "test": 17
+      }
+    },
+    "knife": {
+      "instances": {
+        "train": 269,
+        "val": 30,
+        "test": 29
+      },
+      "images": {
+        "train": 148,
+        "val": 12,
+        "test": 15
+      }
+    },
+    "spoon": {
+      "instances": {
+        "train": 214,
+        "val": 11,
+        "test": 30
+      },
+      "images": {
+        "train": 128,
+        "val": 11,
+        "test": 14
+      }
+    },
+    "bowl": {
+      "instances": {
+        "train": 498,
+        "val": 72,
+        "test": 51
+      },
+      "images": {
+        "train": 258,
+        "val": 36,
+        "test": 21
+      }
+    },
+    "banana": {
+      "instances": {
+        "train": 273,
+        "val": 38,
+        "test": 32
+      },
+      "images": {
+        "train": 77,
+        "val": 9,
+        "test": 7
+      }
+    },
+    "apple": {
+      "instances": {
+        "train": 213,
+        "val": 15,
+        "test": 17
+      },
+      "images": {
+        "train": 59,
+        "val": 6,
+        "test": 3
+      }
+    },
+    "sandwich": {
+      "instances": {
+        "train": 149,
+        "val": 28,
+        "test": 23
+      },
+      "images": {
+        "train": 86,
+        "val": 10,
+        "test": 14
+      }
+    },
+    "orange": {
+      "instances": {
+        "train": 207,
+        "val": 32,
+        "test": 39
+      },
+      "images": {
+        "train": 55,
+        "val": 7,
+        "test": 7
+      }
+    },
+    "broccoli": {
+      "instances": {
+        "train": 258,
+        "val": 47,
+        "test": 40
+      },
+      "images": {
+        "train": 56,
+        "val": 12,
+        "test": 9
+      }
+    },
+    "carrot": {
+      "instances": {
+        "train": 289,
+        "val": 37,
+        "test": 38
+      },
+      "images": {
+        "train": 60,
+        "val": 10,
+        "test": 5
+      }
+    },
+    "hot dog": {
+      "instances": {
+        "train": 121,
+        "val": 11,
+        "test": 21
+      },
+      "images": {
+        "train": 47,
+        "val": 4,
+        "test": 7
+      }
+    },
+    "pizza": {
+      "instances": {
+        "train": 206,
+        "val": 20,
+        "test": 13
+      },
+      "images": {
+        "train": 116,
+        "val": 8,
+        "test": 9
+      }
+    },
+    "donut": {
+      "instances": {
+        "train": 218,
+        "val": 55,
+        "test": 55
+      },
+      "images": {
+        "train": 53,
+        "val": 9,
+        "test": 7
+      }
+    },
+    "cake": {
+      "instances": {
+        "train": 211,
+        "val": 33,
+        "test": 30
+      },
+      "images": {
+        "train": 98,
+        "val": 10,
+        "test": 13
+      }
+    },
+    "chair": {
+      "instances": {
+        "train": 1136,
+        "val": 197,
+        "test": 156
+      },
+      "images": {
+        "train": 401,
+        "val": 62,
+        "test": 62
+      }
+    },
+    "couch": {
+      "instances": {
+        "train": 175,
+        "val": 17,
+        "test": 21
+      },
+      "images": {
+        "train": 143,
+        "val": 15,
+        "test": 16
+      }
+    },
+    "potted plant": {
+      "instances": {
+        "train": 258,
+        "val": 37,
+        "test": 39
+      },
+      "images": {
+        "train": 137,
+        "val": 21,
+        "test": 23
+      }
+    },
+    "bed": {
+      "instances": {
+        "train": 122,
+        "val": 24,
+        "test": 31
+      },
+      "images": {
+        "train": 113,
+        "val": 19,
+        "test": 20
+      }
+    },
+    "dining table": {
+      "instances": {
+        "train": 479,
+        "val": 78,
+        "test": 62
+      },
+      "images": {
+        "train": 383,
+        "val": 51,
+        "test": 55
+      }
+    },
+    "toilet": {
+      "instances": {
+        "train": 162,
+        "val": 14,
+        "test": 7
+      },
+      "images": {
+        "train": 118,
+        "val": 13,
+        "test": 7
+      }
+    },
+    "tv": {
+      "instances": {
+        "train": 156,
+        "val": 15,
+        "test": 33
+      },
+      "images": {
+        "train": 135,
+        "val": 12,
+        "test": 22
+      }
+    },
+    "laptop": {
+      "instances": {
+        "train": 198,
+        "val": 22,
+        "test": 21
+      },
+      "images": {
+        "train": 129,
+        "val": 14,
+        "test": 17
+      }
+    },
+    "mouse": {
+      "instances": {
+        "train": 75,
+        "val": 14,
+        "test": 8
+      },
+      "images": {
+        "train": 64,
+        "val": 9,
+        "test": 7
+      }
+    },
+    "remote": {
+      "instances": {
+        "train": 176,
+        "val": 22,
+        "test": 38
+      },
+      "images": {
+        "train": 89,
+        "val": 14,
+        "test": 16
+      }
+    },
+    "keyboard": {
+      "instances": {
+        "train": 89,
+        "val": 11,
+        "test": 13
+      },
+      "images": {
+        "train": 67,
+        "val": 10,
+        "test": 11
+      }
+    },
+    "cell phone": {
+      "instances": {
+        "train": 227,
+        "val": 29,
+        "test": 15
+      },
+      "images": {
+        "train": 159,
+        "val": 23,
+        "test": 13
+      }
+    },
+    "microwave": {
+      "instances": {
+        "train": 43,
+        "val": 8,
+        "test": 3
+      },
+      "images": {
+        "train": 38,
+        "val": 7,
+        "test": 3
+      }
+    },
+    "oven": {
+      "instances": {
+        "train": 97,
+        "val": 23,
+        "test": 15
+      },
+      "images": {
+        "train": 86,
+        "val": 18,
+        "test": 9
+      }
+    },
+    "toaster": {
+      "instances": {
+        "train": 11,
+        "val": 2,
+        "test": 0
+      },
+      "images": {
+        "train": 7,
+        "val": 2,
+        "test": 0
+      }
+    },
+    "sink": {
+      "instances": {
+        "train": 178,
+        "val": 28,
+        "test": 15
+      },
+      "images": {
+        "train": 149,
+        "val": 25,
+        "test": 12
+      }
+    },
+    "refrigerator": {
+      "instances": {
+        "train": 83,
+        "val": 11,
+        "test": 7
+      },
+      "images": {
+        "train": 73,
+        "val": 11,
+        "test": 7
+      }
+    },
+    "book": {
+      "instances": {
+        "train": 739,
+        "val": 53,
+        "test": 76
+      },
+      "images": {
+        "train": 161,
+        "val": 21,
+        "test": 18
+      }
+    },
+    "clock": {
+      "instances": {
+        "train": 266,
+        "val": 32,
+        "test": 32
+      },
+      "images": {
+        "train": 204,
+        "val": 27,
+        "test": 22
+      }
+    },
+    "vase": {
+      "instances": {
+        "train": 216,
+        "val": 24,
+        "test": 13
+      },
+      "images": {
+        "train": 130,
+        "val": 17,
+        "test": 10
+      }
+    },
+    "scissors": {
+      "instances": {
+        "train": 37,
+        "val": 15,
+        "test": 6
+      },
+      "images": {
+        "train": 34,
+        "val": 8,
+        "test": 3
+      }
+    },
+    "teddy bear": {
+      "instances": {
+        "train": 121,
+        "val": 15,
+        "test": 23
+      },
+      "images": {
+        "train": 66,
+        "val": 12,
+        "test": 10
+      }
+    },
+    "hair drier": {
+      "instances": {
+        "train": 6,
+        "val": 1,
+        "test": 0
+      },
+      "images": {
+        "train": 5,
+        "val": 1,
+        "test": 0
+      }
+    },
+    "toothbrush": {
+      "instances": {
+        "train": 93,
+        "val": 6,
+        "test": 4
+      },
+      "images": {
+        "train": 42,
+        "val": 3,
+        "test": 1
+      }
+    }
+  },
+  "absent_by_partition": {
+    "train": [],
+    "val": [],
+    "test": [
+      "toaster",
+      "hair drier"
+    ]
+  },
+  "rare_watch": {
+    "toaster": {
+      "instances": {
+        "train": 11,
+        "val": 2,
+        "test": 0
+      },
+      "images": {
+        "train": 7,
+        "val": 2,
+        "test": 0
+      }
+    },
+    "hair drier": {
+      "instances": {
+        "train": 6,
+        "val": 1,
+        "test": 0
+      },
+      "images": {
+        "train": 5,
+        "val": 1,
+        "test": 0
+      }
+    }
+  }
+}

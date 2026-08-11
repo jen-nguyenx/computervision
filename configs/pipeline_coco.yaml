@@ -1,0 +1,43 @@
+# COCO5K pipeline policy file — every value here is an explicit, documented decision.
+# See docs/COCO_PIPELINE_DECISIONS.md for the why behind each line.
+# A controlled-experiment variant = copy this file, change one line, pass --config.
+
+seed: 0
+
+subset:
+  n_images: 5000              # first 5,000 by ascending numeric image ID; empty images kept (D1)
+
+split:
+  ratios:                     # 4000 / 500 / 500, one split shared by detect & segment (D4)
+    train: 0.80
+    val: 0.10
+    test: 0.10
+
+labels:
+  crowd_policy: exclude_and_count          # iscrowd=1 (448 anns) skipped, counted (D6)
+  multipolygon: merge_ultralytics          # merge_multi_segment, ultralytics 8.4.117 (D7)
+  suspicious_parts_threshold: 8            # >=8 parts -> flagged in ledger, NEVER removed (D7)
+  degenerate_policy: exclude_and_count     # <3 pts / odd coords: skip part, count, keep going (D8)
+  tiny_policy: keep_all                    # small objects stay; only zero/neg-area dropped (D12)
+  out_of_bounds: clip_and_count            # clamp to [0,1] after normalization, count clips (D10)
+  crude_vertex_flag:                       # audit-only flag, no pipeline action (D9)
+    max_points: 4
+    min_area: 800
+
+audit_only:                                # measured + reported, never acted on (D13)
+  grayscale: report
+  imbalance: report
+
+layout:
+  images: symlink                          # no image duplication; data/ is gitignored (D14)
+
+paths:                                     # relative to repo root
+  annotations: datasets/coco/annotations/instances_train2017.json
+  images_dir: datasets/coco/train2017
+  manifest: manifests/coco5k.csv
+  splits: manifests/coco5k_splits.csv
+  hashes: manifests/HASHES.txt
+  category_map: configs/coco_category_map.json
+  yolo_root: data/yolo
+  metrics_dir: reports/metrics
+  figures_dir: reports/figures

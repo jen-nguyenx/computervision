@@ -1,0 +1,15 @@
+{
+  "input_annotations": 36213,
+  "converted": 35765,
+  "excluded": {
+    "crowd": 448,
+    "degenerate_parts": 0,
+    "empty_segmentation": 0,
+    "zero_area": 0
+  },
+  "clipped_coord_count": 0,
+  "merged_multipolygon": 0,
+  "suspicious_flagged": [],
+  "reconciliation_ok": true,
+  "ultralytics_version": "8.4.117"
+}

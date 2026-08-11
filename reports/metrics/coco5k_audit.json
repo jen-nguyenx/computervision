@@ -1,0 +1,934 @@
+{
+  "generated_by": "src/data/audit_coco5k.py",
+  "images": {
+    "total": 5000,
+    "empty": 49,
+    "missing_files": 0,
+    "unreadable_files": 0
+  },
+  "annotations": {
+    "definition_usable": "what each converter retains as whole annotations: detect = iscrowd 0 with positive-area bbox (D6, D12); segment = iscrowd 0 with >= 1 valid polygon part (D6, D8); must equal the 'converted' field of each ledger",
+    "total": 36213,
+    "usable_detect": 35765,
+    "usable_segment": 35765,
+    "iscrowd": 448
+  },
+  "class_distribution": {
+    "definition": "all annotations on the manifest images, crowd included",
+    "per_class": [
+      {
+        "class": "person",
+        "contiguous_id": 0,
+        "instances": 11281,
+        "images": 2700,
+        "share_pct": 31.15
+      },
+      {
+        "class": "car",
+        "contiguous_id": 2,
+        "instances": 1892,
+        "images": 533,
+        "share_pct": 5.22
+      },
+      {
+        "class": "chair",
+        "contiguous_id": 56,
+        "instances": 1489,
+        "images": 525,
+        "share_pct": 4.11
+      },
+      {
+        "class": "bottle",
+        "contiguous_id": 39,
+        "instances": 993,
+        "images": 361,
+        "share_pct": 2.74
+      },
+      {
+        "class": "book",
+        "contiguous_id": 73,
+        "instances": 868,
+        "images": 200,
+        "share_pct": 2.4
+      },
+      {
+        "class": "cup",
+        "contiguous_id": 41,
+        "instances": 832,
+        "images": 395,
+        "share_pct": 2.3
+      },
+      {
+        "class": "bowl",
+        "contiguous_id": 45,
+        "instances": 621,
+        "images": 315,
+        "share_pct": 1.71
+      },
+      {
+        "class": "dining table",
+        "contiguous_id": 60,
+        "instances": 619,
+        "images": 489,
+        "share_pct": 1.71
+      },
+      {
+        "class": "handbag",
+        "contiguous_id": 26,
+        "instances": 571,
+        "images": 308,
+        "share_pct": 1.58
+      },
+      {
+        "class": "traffic light",
+        "contiguous_id": 9,
+        "instances": 516,
+        "images": 162,
+        "share_pct": 1.42
+      },
+      {
+        "class": "umbrella",
+        "contiguous_id": 25,
+        "instances": 500,
+        "images": 162,
+        "share_pct": 1.38
+      },
+      {
+        "class": "boat",
+        "contiguous_id": 8,
+        "instances": 442,
+        "images": 120,
+        "share_pct": 1.22
+      },
+      {
+        "class": "bird",
+        "contiguous_id": 14,
+        "instances": 424,
+        "images": 124,
+        "share_pct": 1.17
+      },
+      {
+        "class": "sheep",
+        "contiguous_id": 18,
+        "instances": 418,
+        "images": 60,
+        "share_pct": 1.15
+      },
+      {
+        "class": "truck",
+        "contiguous_id": 7,
+        "instances": 406,
+        "images": 258,
+        "share_pct": 1.12
+      },
+      {
+        "class": "bench",
+        "contiguous_id": 13,
+        "instances": 393,
+        "images": 216,
+        "share_pct": 1.09
+      },
+      {
+        "class": "kite",
+        "contiguous_id": 33,
+        "instances": 390,
+        "images": 95,
+        "share_pct": 1.08
+      },
+      {
+        "class": "backpack",
+        "contiguous_id": 24,
+        "instances": 383,
+        "images": 228,
+        "share_pct": 1.06
+      },
+      {
+        "class": "motorcycle",
+        "contiguous_id": 3,
+        "instances": 379,
+        "images": 172,
+        "share_pct": 1.05
+      },
+      {
+        "class": "carrot",
+        "contiguous_id": 51,
+        "instances": 364,
+        "images": 75,
+        "share_pct": 1.01
+      },
+      {
+        "class": "bicycle",
+        "contiguous_id": 1,
+        "instances": 354,
+        "images": 150,
+        "share_pct": 0.98
+      },
+      {
+        "class": "broccoli",
+        "contiguous_id": 50,
+        "instances": 345,
+        "images": 77,
+        "share_pct": 0.95
+      },
+      {
+        "class": "banana",
+        "contiguous_id": 46,
+        "instances": 343,
+        "images": 93,
+        "share_pct": 0.95
+      },
+      {
+        "class": "potted plant",
+        "contiguous_id": 58,
+        "instances": 334,
+        "images": 181,
+        "share_pct": 0.92
+      },
+      {
+        "class": "clock",
+        "contiguous_id": 74,
+        "instances": 330,
+        "images": 253,
+        "share_pct": 0.91
+      },
+      {
+        "class": "knife",
+        "contiguous_id": 43,
+        "instances": 328,
+        "images": 175,
+        "share_pct": 0.91
+      },
+      {
+        "class": "donut",
+        "contiguous_id": 54,
+        "instances": 328,
+        "images": 69,
+        "share_pct": 0.91
+      },
+      {
+        "class": "horse",
+        "contiguous_id": 17,
+        "instances": 316,
+        "images": 133,
+        "share_pct": 0.87
+      },
+      {
+        "class": "wine glass",
+        "contiguous_id": 40,
+        "instances": 305,
+        "images": 96,
+        "share_pct": 0.84
+      },
+      {
+        "class": "skis",
+        "contiguous_id": 30,
+        "instances": 290,
+        "images": 127,
+        "share_pct": 0.8
+      },
+      {
+        "class": "suitcase",
+        "contiguous_id": 28,
+        "instances": 282,
+        "images": 96,
+        "share_pct": 0.78
+      },
+      {
+        "class": "orange",
+        "contiguous_id": 49,
+        "instances": 278,
+        "images": 69,
+        "share_pct": 0.77
+      },
+      {
+        "class": "tie",
+        "contiguous_id": 27,
+        "instances": 277,
+        "images": 159,
+        "share_pct": 0.76
+      },
+      {
+        "class": "cake",
+        "contiguous_id": 55,
+        "instances": 274,
+        "images": 121,
+        "share_pct": 0.76
+      },
+      {
+        "class": "cell phone",
+        "contiguous_id": 67,
+        "instances": 271,
+        "images": 195,
+        "share_pct": 0.75
+      },
+      {
+        "class": "dog",
+        "contiguous_id": 16,
+        "instances": 269,
+        "images": 186,
+        "share_pct": 0.74
+      },
+      {
+        "class": "bus",
+        "contiguous_id": 5,
+        "instances": 266,
+        "images": 176,
+        "share_pct": 0.73
+      },
+      {
+        "class": "zebra",
+        "contiguous_id": 22,
+        "instances": 266,
+        "images": 83,
+        "share_pct": 0.73
+      },
+      {
+        "class": "surfboard",
+        "contiguous_id": 37,
+        "instances": 261,
+        "images": 161,
+        "share_pct": 0.72
+      },
+      {
+        "class": "sports ball",
+        "contiguous_id": 32,
+        "instances": 258,
+        "images": 172,
+        "share_pct": 0.71
+      },
+      {
+        "class": "giraffe",
+        "contiguous_id": 23,
+        "instances": 257,
+        "images": 115,
+        "share_pct": 0.71
+      },
+      {
+        "class": "skateboard",
+        "contiguous_id": 36,
+        "instances": 255,
+        "images": 154,
+        "share_pct": 0.7
+      },
+      {
+        "class": "spoon",
+        "contiguous_id": 44,
+        "instances": 255,
+        "images": 153,
+        "share_pct": 0.7
+      },
+      {
+        "class": "vase",
+        "contiguous_id": 75,
+        "instances": 253,
+        "images": 157,
+        "share_pct": 0.7
+      },
+      {
+        "class": "apple",
+        "contiguous_id": 47,
+        "instances": 245,
+        "images": 68,
+        "share_pct": 0.68
+      },
+      {
+        "class": "fork",
+        "contiguous_id": 42,
+        "instances": 242,
+        "images": 152,
+        "share_pct": 0.67
+      },
+      {
+        "class": "laptop",
+        "contiguous_id": 63,
+        "instances": 241,
+        "images": 160,
+        "share_pct": 0.67
+      },
+      {
+        "class": "pizza",
+        "contiguous_id": 53,
+        "instances": 239,
+        "images": 133,
+        "share_pct": 0.66
+      },
+      {
+        "class": "remote",
+        "contiguous_id": 65,
+        "instances": 236,
+        "images": 119,
+        "share_pct": 0.65
+      },
+      {
+        "class": "airplane",
+        "contiguous_id": 4,
+        "instances": 226,
+        "images": 129,
+        "share_pct": 0.62
+      },
+      {
+        "class": "cow",
+        "contiguous_id": 19,
+        "instances": 223,
+        "images": 72,
+        "share_pct": 0.62
+      },
+      {
+        "class": "elephant",
+        "contiguous_id": 20,
+        "instances": 223,
+        "images": 84,
+        "share_pct": 0.62
+      },
+      {
+        "class": "sink",
+        "contiguous_id": 71,
+        "instances": 221,
+        "images": 186,
+        "share_pct": 0.61
+      },
+      {
+        "class": "tennis racket",
+        "contiguous_id": 38,
+        "instances": 220,
+        "images": 149,
+        "share_pct": 0.61
+      },
+      {
+        "class": "couch",
+        "contiguous_id": 57,
+        "instances": 213,
+        "images": 174,
+        "share_pct": 0.59
+      },
+      {
+        "class": "train",
+        "contiguous_id": 6,
+        "instances": 207,
+        "images": 158,
+        "share_pct": 0.57
+      },
+      {
+        "class": "cat",
+        "contiguous_id": 15,
+        "instances": 204,
+        "images": 183,
+        "share_pct": 0.56
+      },
+      {
+        "class": "tv",
+        "contiguous_id": 62,
+        "instances": 204,
+        "images": 169,
+        "share_pct": 0.56
+      },
+      {
+        "class": "sandwich",
+        "contiguous_id": 48,
+        "instances": 200,
+        "images": 110,
+        "share_pct": 0.55
+      },
+      {
+        "class": "toilet",
+        "contiguous_id": 61,
+        "instances": 183,
+        "images": 138,
+        "share_pct": 0.51
+      },
+      {
+        "class": "bed",
+        "contiguous_id": 59,
+        "instances": 177,
+        "images": 152,
+        "share_pct": 0.49
+      },
+      {
+        "class": "baseball glove",
+        "contiguous_id": 35,
+        "instances": 163,
+        "images": 107,
+        "share_pct": 0.45
+      },
+      {
+        "class": "teddy bear",
+        "contiguous_id": 77,
+        "instances": 159,
+        "images": 88,
+        "share_pct": 0.44
+      },
+      {
+        "class": "hot dog",
+        "contiguous_id": 52,
+        "instances": 153,
+        "images": 58,
+        "share_pct": 0.42
+      },
+      {
+        "class": "oven",
+        "contiguous_id": 69,
+        "instances": 135,
+        "images": 113,
+        "share_pct": 0.37
+      },
+      {
+        "class": "frisbee",
+        "contiguous_id": 29,
+        "instances": 127,
+        "images": 88,
+        "share_pct": 0.35
+      },
+      {
+        "class": "baseball bat",
+        "contiguous_id": 34,
+        "instances": 115,
+        "images": 102,
+        "share_pct": 0.32
+      },
+      {
+        "class": "keyboard",
+        "contiguous_id": 66,
+        "instances": 113,
+        "images": 88,
+        "share_pct": 0.31
+      },
+      {
+        "class": "toothbrush",
+        "contiguous_id": 79,
+        "instances": 103,
+        "images": 46,
+        "share_pct": 0.28
+      },
+      {
+        "class": "refrigerator",
+        "contiguous_id": 72,
+        "instances": 101,
+        "images": 91,
+        "share_pct": 0.28
+      },
+      {
+        "class": "mouse",
+        "contiguous_id": 64,
+        "instances": 97,
+        "images": 80,
+        "share_pct": 0.27
+      },
+      {
+        "class": "snowboard",
+        "contiguous_id": 31,
+        "instances": 91,
+        "images": 65,
+        "share_pct": 0.25
+      },
+      {
+        "class": "fire hydrant",
+        "contiguous_id": 10,
+        "instances": 71,
+        "images": 63,
+        "share_pct": 0.2
+      },
+      {
+        "class": "stop sign",
+        "contiguous_id": 11,
+        "instances": 70,
+        "images": 66,
+        "share_pct": 0.19
+      },
+      {
+        "class": "bear",
+        "contiguous_id": 21,
+        "instances": 59,
+        "images": 42,
+        "share_pct": 0.16
+      },
+      {
+        "class": "scissors",
+        "contiguous_id": 76,
+        "instances": 58,
+        "images": 45,
+        "share_pct": 0.16
+      },
+      {
+        "class": "microwave",
+        "contiguous_id": 68,
+        "instances": 54,
+        "images": 48,
+        "share_pct": 0.15
+      },
+      {
+        "class": "parking meter",
+        "contiguous_id": 12,
+        "instances": 44,
+        "images": 29,
+        "share_pct": 0.12
+      },
+      {
+        "class": "toaster",
+        "contiguous_id": 70,
+        "instances": 13,
+        "images": 9,
+        "share_pct": 0.04
+      },
+      {
+        "class": "hair drier",
+        "contiguous_id": 78,
+        "instances": 7,
+        "images": 6,
+        "share_pct": 0.02
+      }
+    ],
+    "top1_share_pct": 31.15,
+    "top5_share_pct": 45.62,
+    "classes_under_20_instances": {
+      "toaster": 13,
+      "hair drier": 7
+    }
+  },
+  "instances_per_image": {
+    "definition": "usable (iscrowd == 0) annotations per manifest image; empty images count 0",
+    "mean": 7.153,
+    "median": 4.0,
+    "max": 55,
+    "histogram": {
+      "0": 49,
+      "1": 589,
+      "2": 915,
+      "3": 599,
+      "4": 423,
+      "5": 333,
+      "6": 239,
+      "7": 202,
+      "8": 172,
+      "9": 140,
+      "10": 113,
+      "11": 124,
+      "12": 122,
+      "13": 128,
+      "14": 143,
+      "15": 102,
+      "16": 97,
+      "17": 65,
+      "18": 70,
+      "19": 43,
+      "20": 46,
+      "21": 33,
+      "22": 29,
+      "23": 23,
+      "24": 31,
+      "25": 24,
+      "26": 24,
+      "27": 20,
+      "28": 17,
+      "29": 11,
+      "30": 6,
+      "31": 12,
+      "32": 5,
+      "33": 4,
+      "34": 7,
+      "35": 4,
+      "36": 6,
+      "37": 2,
+      "38": 2,
+      "39": 4,
+      "40": 6,
+      "41": 2,
+      "42": 2,
+      "43": 1,
+      "44": 1,
+      "45": 1,
+      "47": 1,
+      "48": 1,
+      "49": 2,
+      "50": 1,
+      "51": 1,
+      "53": 2,
+      "55": 1
+    }
+  },
+  "dimensions": {
+    "common_sizes": [
+      {
+        "size": "640x480",
+        "images": 1092
+      },
+      {
+        "size": "640x427",
+        "images": 588
+      },
+      {
+        "size": "480x640",
+        "images": 331
+      },
+      {
+        "size": "640x426",
+        "images": 204
+      },
+      {
+        "size": "500x375",
+        "images": 204
+      },
+      {
+        "size": "427x640",
+        "images": 203
+      },
+      {
+        "size": "640x428",
+        "images": 139
+      },
+      {
+        "size": "640x425",
+        "images": 129
+      },
+      {
+        "size": "612x612",
+        "images": 102
+      },
+      {
+        "size": "375x500",
+        "images": 85
+      }
+    ],
+    "distinct_sizes": 621,
+    "aspect_ratio": {
+      "mean": 1.249,
+      "median": 1.333,
+      "min": 0.328,
+      "max": 4.812
+    }
+  },
+  "object_areas": {
+    "definition": "COCO 'area' field (segmentation area, px^2) over all annotations; small < 32^2 (1024), medium in [32^2, 96^2), large >= 96^2 (9216) \u2014 the COCO evaluation thresholds",
+    "small": 14896,
+    "medium": 12490,
+    "large": 8827
+  },
+  "segmentation": {
+    "polygon": 35765,
+    "rle": 448,
+    "multipolygon_instances": 3455
+  },
+  "crude_polygons": {
+    "definition": "polygon annotations with any part of <= 4 vertices and area > 800 px^2 (config labels.crude_vertex_flag); audit-only flag, no pipeline action (D9)",
+    "count": 635,
+    "examples_image_id_ann_id": [
+      [
+        15918,
+        34294
+      ],
+      [
+        16977,
+        142131
+      ],
+      [
+        4355,
+        150277
+      ],
+      [
+        19157,
+        186349
+      ],
+      [
+        10114,
+        332730
+      ],
+      [
+        16285,
+        348525
+      ],
+      [
+        9668,
+        1118462
+      ],
+      [
+        164,
+        1119489
+      ],
+      [
+        10844,
+        1121907
+      ],
+      [
+        22621,
+        1123563
+      ]
+    ]
+  },
+  "degenerate_annotations": {
+    "definition": "polygon parts with < 3 points or an odd coordinate count (D8), empty segmentation, or bbox with non-positive width/height (D12)",
+    "degenerate_parts": 0,
+    "empty_segmentation": 0,
+    "nonpositive_bbox": 0,
+    "total": 0
+  },
+  "pixel_scan": {
+    "definition": "every manifest image opened and decoded with Pillow; grayscale = stored mode 'L' plus RGB files whose three channels are identical; measured and reported only, never converted or excluded (D13)",
+    "missing_files": 0,
+    "unreadable_files": 0,
+    "grayscale_total": 154,
+    "grayscale_stored_L": 14,
+    "grayscale_rgb_encoded": 140,
+    "grayscale_image_ids": [
+      86,
+      328,
+      542,
+      634,
+      671,
+      821,
+      825,
+      1103,
+      1350,
+      1900,
+      2377,
+      2531,
+      2555,
+      2606,
+      2686,
+      2833,
+      3077,
+      3209,
+      3293,
+      3337,
+      3353,
+      3386,
+      3461,
+      4441,
+      4489,
+      4880,
+      4971,
+      4993,
+      5247,
+      5294,
+      5324,
+      5356,
+      5376,
+      5377,
+      5430,
+      5706,
+      5879,
+      6295,
+      6306,
+      6334,
+      6379,
+      6432,
+      6491,
+      6658,
+      6810,
+      6943,
+      6945,
+      7049,
+      7256,
+      7627,
+      7653,
+      7954,
+      8519,
+      8564,
+      8794,
+      9226,
+      9420,
+      9738,
+      10012,
+      10125,
+      10179,
+      10534,
+      10581,
+      10693,
+      10920,
+      11159,
+      11231,
+      11238,
+      11269,
+      11487,
+      11712,
+      11758,
+      11801,
+      12108,
+      12131,
+      12345,
+      12750,
+      12896,
+      13082,
+      13362,
+      13397,
+      13565,
+      13783,
+      13868,
+      13876,
+      14209,
+      14278,
+      14477,
+      14526,
+      14619,
+      14819,
+      14820,
+      14975,
+      15109,
+      15151,
+      15236,
+      15286,
+      15400,
+      15954,
+      16112,
+      16486,
+      17068,
+      17174,
+      17305,
+      17438,
+      17570,
+      17583,
+      17755,
+      17776,
+      17954,
+      18099,
+      18158,
+      18179,
+      18402,
+      18571,
+      18605,
+      18614,
+      18702,
+      18811,
+      19157,
+      19431,
+      19766,
+      19797,
+      20063,
+      20355,
+      20640,
+      20915,
+      21183,
+      21232,
+      21329,
+      21365,
+      21383,
+      21895,
+      22004,
+      22041,
+      22044,
+      22123,
+      22191,
+      22193,
+      22230,
+      22420,
+      22427,
+      23054,
+      23194,
+      23218,
+      23294,
+      23406,
+      23415,
+      23487,
+      23754,
+      23815,
+      23927,
+      23949,
+      24181
+    ],
+    "other_modes": {},
+    "exif_orientation_not_1": 0,
+    "size_mismatches_json_vs_file": 0,
+    "missing_file_names": [],
+    "unreadable_file_names": [],
+    "size_mismatch_file_names": [],
+    "exif_rotated_file_names": []
+  }
+}

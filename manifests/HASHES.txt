@@ -1,0 +1,2 @@
+80710a8fe9d440f31e1039ec2ca541e3bbc256cc42ae0096d14a233a3ace44cc  manifests/coco5k.csv
+c98e09be4afaec339036d6695e6dbd9751d99dccfb5dc53bf38b77e98473f705  manifests/coco5k_splits.csv
