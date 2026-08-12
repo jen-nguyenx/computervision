@@ -529,11 +529,17 @@ def write_markdown(path, report):
         stability = report["models"][label]["latency"]["stability"]
         thirds = ", ".join(f"{t:.2f}" for t in stability["third_medians_ms"])
         lat = report["models"][label]["latency"]
+        warning = "" if stability["steady"] else (
+            " **No block passed the stability gate on this machine, so this row is the "
+            "least-bad of the five — treat it as an upper bound with roughly +/-10% "
+            "uncertainty, not a precise figure.**"
+        )
         lines.append(f"- {label}: {lat['attempts']} repeated blocks with medians "
                      f"{', '.join(f'{m:.2f}' for m in lat['attempt_medians_ms'])} ms "
                      f"({lat['attempts_discarded_as_drifted']} discarded as drifted); the "
                      f"reported block has first/middle/last-third medians of {thirds} ms, a "
-                     f"spread of {stability['spread_fraction_of_median']:.1%} of its median.")
+                     f"spread of {stability['spread_fraction_of_median']:.1%} of its median."
+                     f"{warning}")
     lines.append("")
 
     lines.append("Measurement caveat: this is a laptop whose GPU is shared with the macOS window "
