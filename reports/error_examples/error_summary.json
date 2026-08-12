@@ -1,0 +1,305 @@
+{
+  "assignment_section": "10.6",
+  "split": "val",
+  "label": "640",
+  "checkpoint": "artifacts/coco5k-detect-300ep/runs/detect/runs/detect-300ep-640/weights/best.pt",
+  "checkpoint_sha256": "4975baed2748adcb901dba828d2b85a2eea11230c16a56fe436d063e584277c9",
+  "operating_threshold": {
+    "conf": 0.21,
+    "source": "max-F1 operating point for model '640' read from /Users/jen/Projects/coding/computervision/reports/metrics/thresholds.json",
+    "is_fallback": false
+  },
+  "match_iou": 0.5,
+  "counts": {
+    "tp": 1175,
+    "fp": 1124,
+    "fn": 2631,
+    "duplicates": 161,
+    "ignored": 145
+  },
+  "category_definitions": {
+    "order": [
+      "duplicate_detection",
+      "class_confusion",
+      "loose_box",
+      "high_conf_false_positive",
+      "low_conf_false_positive",
+      "missed_small",
+      "missed_rare_class",
+      "missed_border",
+      "missed_other"
+    ],
+    "small_area_max_px2": 1024,
+    "border_tolerance_px": 2,
+    "loose_box_iou_range": [
+      0.3,
+      0.5
+    ],
+    "high_conf_score": 0.5,
+    "rare_band": "train instances < 100 (\u00a710.5 bands)"
+  },
+  "categories": [
+    {
+      "category": "duplicate_detection",
+      "count": 161,
+      "prevalence_pct": 4.287616511318243,
+      "example_image_ids": [
+        23140,
+        15193,
+        6026,
+        569,
+        6846
+      ]
+    },
+    {
+      "category": "class_confusion",
+      "count": 271,
+      "prevalence_pct": 7.217043941411451,
+      "example_image_ids": [
+        10303,
+        19158,
+        21097,
+        12422,
+        18367
+      ]
+    },
+    {
+      "category": "loose_box",
+      "count": 171,
+      "prevalence_pct": 4.553928095872171,
+      "example_image_ids": [
+        15374,
+        2466,
+        16465,
+        24404,
+        1011
+      ]
+    },
+    {
+      "category": "high_conf_false_positive",
+      "count": 83,
+      "prevalence_pct": 2.210386151797603,
+      "example_image_ids": [
+        16903,
+        8429,
+        368,
+        5151,
+        18127
+      ]
+    },
+    {
+      "category": "low_conf_false_positive",
+      "count": 438,
+      "prevalence_pct": 11.66444740346205,
+      "example_image_ids": [
+        23434,
+        9668,
+        14257,
+        22651,
+        4265
+      ]
+    },
+    {
+      "category": "missed_small",
+      "count": 1386,
+      "prevalence_pct": 36.91078561917443,
+      "example_image_ids": [
+        1144,
+        12897,
+        1011,
+        315,
+        17985
+      ]
+    },
+    {
+      "category": "missed_rare_class",
+      "count": 73,
+      "prevalence_pct": 1.944074567243675,
+      "example_image_ids": [
+        18093,
+        5172,
+        17154,
+        8761,
+        16701
+      ]
+    },
+    {
+      "category": "missed_border",
+      "count": 343,
+      "prevalence_pct": 9.134487350199734,
+      "example_image_ids": [
+        20460,
+        20207,
+        14248,
+        11703,
+        4980
+      ]
+    },
+    {
+      "category": "missed_other",
+      "count": 829,
+      "prevalence_pct": 22.077230359520637,
+      "example_image_ids": [
+        21316,
+        5169,
+        17921,
+        1522,
+        12681
+      ]
+    }
+  ],
+  "confident_boxes_in_low_conf_bucket": 14,
+  "low_conf_bucket_median_score": 0.29440024495124817,
+  "dense_scene": {
+    "dense_definition": "more than 20 non-crowd ground-truth instances in the image",
+    "dense_images": 33,
+    "sparse_images": 462,
+    "dense_objects": 975,
+    "sparse_objects": 2831,
+    "mean_recall_dense": 0.22719353949669854,
+    "mean_recall_sparse": 0.40451792421983607,
+    "worst_dense_images": [
+      {
+        "image_id": 17392,
+        "n_gt": 23,
+        "tp": 0,
+        "recall": 0.0
+      },
+      {
+        "image_id": 13417,
+        "n_gt": 30,
+        "tp": 1,
+        "recall": 0.03333333333333333
+      },
+      {
+        "image_id": 16383,
+        "n_gt": 31,
+        "tp": 2,
+        "recall": 0.06451612903225806
+      },
+      {
+        "image_id": 23117,
+        "n_gt": 23,
+        "tp": 2,
+        "recall": 0.08695652173913043
+      },
+      {
+        "image_id": 149,
+        "n_gt": 22,
+        "tp": 2,
+        "recall": 0.09090909090909091
+      }
+    ]
+  },
+  "panels": [
+    {
+      "file": "duplicate_detection_23140.png",
+      "category": "duplicate_detection",
+      "image_id": 23140,
+      "description": "second 'person' box (score 0.81) on a 'person' that was already matched, IoU 0.63"
+    },
+    {
+      "file": "class_confusion_10303.png",
+      "category": "class_confusion",
+      "image_id": 10303,
+      "description": "predicted 'bowl' (score 0.96) on a real 'banana', IoU 0.59"
+    },
+    {
+      "file": "loose_box_15374.png",
+      "category": "loose_box",
+      "image_id": 15374,
+      "description": "'keyboard' (score 0.91) on the right object but only IoU 0.45 \u2014 too loose to count at 0.5"
+    },
+    {
+      "file": "high_conf_false_positive_16903.png",
+      "category": "high_conf_false_positive",
+      "image_id": 16903,
+      "description": "confident 'stop sign' (score 0.94) with no ground-truth object under it (best IoU 0.00)"
+    },
+    {
+      "file": "low_conf_false_positive_23434.png",
+      "category": "low_conf_false_positive",
+      "image_id": 23434,
+      "description": "'bowl' at score 0.87 \u2014 confident, but it only grazes ground truth (best IoU 0.34): too little overlap for class confusion, wrong class for a loose box, so it lands in the catch-all bucket"
+    },
+    {
+      "file": "missed_small_1144.png",
+      "category": "missed_small",
+      "image_id": 1144,
+      "description": "missed 'handbag', area 1013 px^2 (COCO small is < 1024)"
+    },
+    {
+      "file": "missed_rare_class_18093.png",
+      "category": "missed_rare_class",
+      "image_id": 18093,
+      "description": "missed 'oven', a rare class (< 100 train instances), area 139026 px^2"
+    },
+    {
+      "file": "missed_border_20460.png",
+      "category": "missed_border",
+      "image_id": 20460,
+      "description": "missed 'truck' touching an image edge, area 331462 px^2"
+    },
+    {
+      "file": "missed_other_21316.png",
+      "category": "missed_other",
+      "image_id": 21316,
+      "description": "missed 'cow', area 185419 px^2, not small, not rare, not on the border"
+    },
+    {
+      "file": "low_conf_false_positive_3694.png",
+      "category": "low_conf_false_positive",
+      "image_id": 3694,
+      "description": "weak 'person' (score 0.35) with no ground-truth object under it"
+    },
+    {
+      "file": "missed_other_5169.png",
+      "category": "missed_other",
+      "image_id": 5169,
+      "description": "missed 'bus', area 162033 px^2, not small, not rare, not on the border"
+    },
+    {
+      "file": "missed_small_12897.png",
+      "category": "missed_small",
+      "image_id": 12897,
+      "description": "missed 'backpack', area 1013 px^2 (COCO small is < 1024)"
+    },
+    {
+      "file": "low_conf_false_positive_9668.png",
+      "category": "low_conf_false_positive",
+      "image_id": 9668,
+      "description": "'clock' at score 0.73 \u2014 confident, but it only grazes ground truth (best IoU 0.33): too little overlap for class confusion, wrong class for a loose box, so it lands in the catch-all bucket"
+    },
+    {
+      "file": "missed_border_20207.png",
+      "category": "missed_border",
+      "image_id": 20207,
+      "description": "missed 'bed' touching an image edge, area 307200 px^2"
+    },
+    {
+      "file": "class_confusion_19158.png",
+      "category": "class_confusion",
+      "image_id": 19158,
+      "description": "predicted 'car' (score 0.91) on a real 'truck', IoU 0.85"
+    },
+    {
+      "file": "duplicate_detection_15193.png",
+      "category": "duplicate_detection",
+      "image_id": 15193,
+      "description": "second 'tie' box (score 0.75) on a 'tie' that was already matched, IoU 0.69"
+    },
+    {
+      "file": "loose_box_2466.png",
+      "category": "loose_box",
+      "image_id": 2466,
+      "description": "'dining table' (score 0.87) on the right object but only IoU 0.44 \u2014 too loose to count at 0.5"
+    },
+    {
+      "file": "high_conf_false_positive_8429.png",
+      "category": "high_conf_false_positive",
+      "image_id": 8429,
+      "description": "confident 'person' (score 0.88) with no ground-truth object under it (best IoU 0.17)"
+    }
+  ],
+  "manual_columns_note": "likely_cause, layer and next_experiment in taxonomy.csv are left empty by this script and filled in by hand after looking at the panels (\u00a710.6)."
+}
