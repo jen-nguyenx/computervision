@@ -1,0 +1,53 @@
+{
+  "split": "val",
+  "ground_truth": {
+    "images": 500,
+    "annotations": 3854
+  },
+  "models": {
+    "640": {
+      "checkpoint": "artifacts/coco5k-detect-300ep/runs/detect/runs/detect-300ep-640/weights/best.pt",
+      "imgsz": 640,
+      "images": 500,
+      "detections": 88681,
+      "latency_median_ms": 15.713416534708813,
+      "latency_p95_ms": 27.73664942942553,
+      "metrics": {
+        "mAP50-95": 0.14313926115873798,
+        "mAP50": 0.22631399944481687,
+        "mAP75": 0.14964839555843662,
+        "AP_small": 0.07018587430320733,
+        "AP_medium": 0.1667743856904683,
+        "AP_large": 0.2333680917045498,
+        "AR_1": 0.17247044332597056,
+        "AR_10": 0.2900592022483075,
+        "AR_100": 0.32271687151403,
+        "AR_small": 0.13074602151067893,
+        "AR_medium": 0.3625493051472676,
+        "AR_large": 0.47137714023816624
+      }
+    },
+    "960": {
+      "checkpoint": "artifacts/coco5k-detect-300ep/runs/detect/runs/detect-300ep-960/weights/best.pt",
+      "imgsz": 960,
+      "images": 500,
+      "detections": 80294,
+      "latency_median_ms": 18.552604014985263,
+      "latency_p95_ms": 167.23808930255473,
+      "metrics": {
+        "mAP50-95": 0.16513994764117393,
+        "mAP50": 0.2575360593581859,
+        "mAP75": 0.17692985701187555,
+        "AP_small": 0.06642438048345031,
+        "AP_medium": 0.1940101239616904,
+        "AP_large": 0.2554726323385994,
+        "AR_1": 0.17637050442214394,
+        "AR_10": 0.296835343189308,
+        "AR_100": 0.32590622279294884,
+        "AR_small": 0.14949839001970688,
+        "AR_medium": 0.3604280408774618,
+        "AR_large": 0.4374209752065902
+      }
+    }
+  }
+}
